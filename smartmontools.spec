@@ -1,7 +1,3 @@
-#
-# Conditional build:
-# _without_dist_kernel - build package with own kernel headers/source
-#
 %define	ver	5.1
 %define	sver	4
 Summary:	S.M.A.R.T. control and monitoring of ATA/SCSI harddisks
@@ -11,11 +7,11 @@ Version:	%{ver}_%{sver}
 Release:	1
 License:	GPL
 Group:		Applications/System
-Source0:	http://prdownloads.sourceforge.net/smartmontools/%{name}-%{ver}-%{sver}.tar.gz
+Source0:	http://dl.sourceforge.net/smartmontools/%{name}-%{ver}-%{sver}.tar.gz
 Source1:	%{name}.init
 URL:		http://smartmontools.sourceforge.net/
-Prereq:		/sbin/chkconfig
-%{!?_without_dist_kernel:BuildRequires:         kernel-headers }
+PreReq:		rc-scripts
+Requires(post,preun):	/sbin/chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	smartctl
 Obsoletes:	ucsc-smartsuite
