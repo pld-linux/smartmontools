@@ -3,7 +3,7 @@
 # _without_dist_kernel - build package with own kernel headers/source
 #
 %define	ver	5.1
-%define	sver	1
+%define	sver	4
 Summary:	S.M.A.R.T. control and monitoring of ATA/SCSI harddisks
 Summary(pl):	Monitorowanie i kontrola dysków u¿ywaj±æ S.M.A.R.T
 Name:		smartmontools
