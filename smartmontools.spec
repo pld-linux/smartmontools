@@ -41,12 +41,11 @@ pochodzi od oprogramowania smartsuite i wspiera dyski ATA/ATAPI-5.
 %{__automake}
 %configure
 
-%{__make} \
-	CC="%{__cc}" \
-	CFLAGS="%{rpmcflags} -fsigned-char -DLINUX"
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
