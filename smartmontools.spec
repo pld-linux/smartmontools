@@ -2,8 +2,8 @@
 # Conditional build:
 # _without_dist_kernel - build package with own kernel headers/source
 #
-%define	ver	5.0
-%define	sver	24
+%define	ver	5.1
+%define	sver	1
 Summary:	S.M.A.R.T. control and monitoring of ATA/SCSI harddisks
 Summary(pl):	Monitorowanie i kontrola dysków u¿ywaj±æ S.M.A.R.T
 Name:		smartmontools
@@ -11,7 +11,7 @@ Version:	%{ver}_%{sver}
 Release:	1
 License:	GPL
 Group:		Applications/System
-Source0:	http://prdownloads.sourceforge.net/smartmontools/%{name}-5.0-24.tar.gz
+Source0:	http://prdownloads.sourceforge.net/smartmontools/%{name}-%{ver}-%{sver}.tar.gz
 Source1:	%{name}.init
 URL:		http://smartmontools.sourceforge.net/
 Prereq:		/sbin/chkconfig
