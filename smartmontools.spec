@@ -1,12 +1,12 @@
 Summary:	S.M.A.R.T. control and monitoring of ATA/SCSI harddisks
 Summary(pl):	Monitorowanie i kontrola dysków za pomoc± S.M.A.R.T
 Name:		smartmontools
-Version:	5.21
+Version:	5.22
 Release:	0.1
 License:	GPL
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/smartmontools/%{name}-%{version}.tar.gz
-# Source0-md5:	64878e77158000d7be2e0c0cbae24cb9
+# Source0-md5:	9a6dfaff993f88f20af1b9a16cd3fd21
 Source1:	%{name}.init
 URL:		http://smartmontools.sourceforge.net/
 BuildRequires:	autoconf
