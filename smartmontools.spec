@@ -1,14 +1,12 @@
-%define	ver	5.1
-%define	sver	16
 Summary:	S.M.A.R.T. control and monitoring of ATA/SCSI harddisks
 Summary(pl):	Monitorowanie i kontrola dysków za pomoc± S.M.A.R.T
 Name:		smartmontools
-Version:	%{ver}_%{sver}
-Release:	1
+Version:	5.19
+Release:	0.1
 License:	GPL
 Group:		Applications/System
-Source0:	http://dl.sourceforge.net/smartmontools/%{name}-%{ver}-%{sver}.tar.gz
-# Source0-md5:	34937c2b801e162743642f030baa0671
+Source0:	http://dl.sourceforge.net/smartmontools/%{name}-%{version}.tar.gz
+# Source0-md5:	c2c7687ac928ce43338c7dae5205e18b
 Source1:	%{name}.init
 URL:		http://smartmontools.sourceforge.net/
 PreReq:		rc-scripts
@@ -32,21 +30,25 @@ systemu wbudowanego w wiêkszo¶æ nowych dysków ATA oraz SCSI. Pakiet
 pochodzi od oprogramowania smartsuite i wspiera dyski ATA/ATAPI-5.
 
 %prep
-%setup -q -n %{name}-%{ver}-%{sver}
+%setup -q
 
 %build
+%{__aclocal}
+%{__autoconf}
+%{__autoheader}
+%{__automake}
+%configure
+
 %{__make} \
 	CC="%{__cc}" \
 	CFLAGS="%{rpmcflags} -fsigned-char -DLINUX"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_sbindir},%{_mandir}/man8} \
-	$RPM_BUILD_ROOT/etc/rc.d/init.d
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/smartd
-install smartd smartctl $RPM_BUILD_ROOT%{_sbindir}
-install smartd.8 smartctl.8 $RPM_BUILD_ROOT%{_mandir}/man8
 
 sed -e 's#^/dev/#\#/dev/#g' smartd.conf > $RPM_BUILD_ROOT%{_sysconfdir}/smartd.conf
 
@@ -75,4 +77,5 @@ fi
 %attr(755,root,root) %{_sbindir}/*
 %attr(754,root,root) /etc/rc.d/init.d/smartd
 %attr(640,root,root) %config(noreplace) %verify(not md5 size mtime) /etc/*.conf
+%{_mandir}/man5/*
 %{_mandir}/man8/*
