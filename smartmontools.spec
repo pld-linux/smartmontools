@@ -8,6 +8,7 @@ Release:	1
 License:	GPL
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/smartmontools/%{name}-%{ver}-%{sver}.tar.gz
+# Source0-md5:	86ddd19b574d31cf420c528d94308ffc
 Source1:	%{name}.init
 URL:		http://smartmontools.sourceforge.net/
 PreReq:		rc-scripts
