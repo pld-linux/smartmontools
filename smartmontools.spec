@@ -1,7 +1,7 @@
 %define	ver	5.1
 %define	sver	16
 Summary:	S.M.A.R.T. control and monitoring of ATA/SCSI harddisks
-Summary(pl):	Monitorowanie i kontrola dysków u¿ywaj±æ S.M.A.R.T
+Summary(pl):	Monitorowanie i kontrola dysków u¿ywaj±c S.M.A.R.T
 Name:		smartmontools
 Version:	%{ver}_%{sver}
 Release:	1
@@ -35,7 +35,9 @@ pochodzi od oprogramowania smartsuite i wspiera dyski ATA/ATAPI-5.
 %setup -q -n %{name}-%{ver}-%{sver}
 
 %build
-%{__make} CC="%{__cc}" CFLAGS="%{rpmcflags} -fsigned-char -DLINUX"
+%{__make} \
+	CC="%{__cc}" \
+	CFLAGS="%{rpmcflags} -fsigned-char -DLINUX"
 
 %install
 rm -rf $RPM_BUILD_ROOT
