@@ -20,8 +20,8 @@ BuildRequires:	automake
 PreReq:		rc-scripts
 Requires(post,preun):	/sbin/chkconfig
 Obsoletes:	smartctl
-Obsoletes:	ucsc-smartsuite
 Obsoletes:	smartsuite
+Obsoletes:	ucsc-smartsuite
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
