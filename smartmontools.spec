@@ -9,6 +9,8 @@ Source0:	http://dl.sourceforge.net/smartmontools/%{name}-%{version}.tar.gz
 # Source0-md5:	c2c7687ac928ce43338c7dae5205e18b
 Source1:	%{name}.init
 URL:		http://smartmontools.sourceforge.net/
+BuildRequires:	autoconf
+BuildRequires:	automake
 PreReq:		rc-scripts
 Requires(post,preun):	/sbin/chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
