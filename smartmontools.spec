@@ -1,7 +1,7 @@
 %define	ver	5.1
 %define	sver	16
 Summary:	S.M.A.R.T. control and monitoring of ATA/SCSI harddisks
-Summary(pl):	Monitorowanie i kontrola dysków u¿ywaj±c S.M.A.R.T
+Summary(pl):	Monitorowanie i kontrola dysków za pomoc± S.M.A.R.T
 Name:		smartmontools
 Version:	%{ver}_%{sver}
 Release:	1
