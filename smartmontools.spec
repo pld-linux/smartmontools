@@ -84,7 +84,7 @@ reservada y especifica de discos duros.
 %description -l fr
 smartmontools contrôle et fait le suivi de périphériques de stockage
 utilisant le système Self-Monitoring, Analysis and Reporting
-Technology (S.M.A.R.T) intégré dans les disques durs ATA et SCSI. Ce
+Technology (S.M.A.R.T) intégré dans les disques durs ATA et SCSI. Ce
 système est utilisé pour vérifier la fiabilité du disque dur et
 prédire les défaillances du lecteur. La suite logicielle dérive du
 paquet smartsuite et contient deux utilitaires. Le premier, smartctl,
@@ -183,6 +183,6 @@ fi
 %doc CHANGELOG README TODO
 %attr(755,root,root) %{_sbindir}/*
 %attr(754,root,root) /etc/rc.d/init.d/smartd
-%attr(640,root,root) %config(noreplace) %verify(not md5 size mtime) /etc/*.conf
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/*.conf
 %{_mandir}/man5/*
 %{_mandir}/man8/*
