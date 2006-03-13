@@ -17,8 +17,9 @@ Source1:	%{name}.init
 URL:		http://smartmontools.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
-PreReq:		rc-scripts
+BuildRequires:	rpmbuild(macros) >= 1.268
 Requires(post,preun):	/sbin/chkconfig
+Requires:	rc-scripts
 Obsoletes:	smartctl
 Obsoletes:	smartsuite
 Obsoletes:	ucsc-smartsuite
@@ -36,7 +37,7 @@ The second, smartd, is a daemon that periodically monitors S.M.A.R.T.
 status and reports errors to syslog. Currently this package includes
 support for ATA/ATAPI-5 disks. It's intended to incorporate as much
 "vendor specific" and "reserved" information as possible about disk
-drives. 
+drives.
 
 %description -l cs
 smartmontools øídí a monitorují zaøízení pro ukládání dat za pou¾ití
@@ -164,17 +165,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/chkconfig --add smartd
-if [ -f /var/lock/subsys/smartd ]; then
-	/etc/rc.d/init.d/smartd restart 1>&2
-else
-	echo "Run \"/etc/rc.d/init.d/smartd start\" to start smartd service."
-fi
+%service smartd restart
 
 %preun
 if [ "$1" = "0" ]; then
-	if [ -f /var/lock/subsys/smartd ]; then
-		/etc/rc.d/init.d/smartd stop 1>&2
-	fi
+	%service smartd stop
 	/sbin/chkconfig --del smartd
 fi
 
@@ -183,6 +178,6 @@ fi
 %doc CHANGELOG README TODO
 %attr(755,root,root) %{_sbindir}/*
 %attr(754,root,root) /etc/rc.d/init.d/smartd
-%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/*.conf
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/*.conf
 %{_mandir}/man5/*
 %{_mandir}/man8/*
