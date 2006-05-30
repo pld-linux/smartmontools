@@ -50,7 +50,7 @@ case "$1" in
 		killproc smartd -HUP
 		RETVAL=$?
 	else
-		msg_not_running smartd >&2
+		msg_not_running smartd
 		exit 7
 	fi
 	;;
