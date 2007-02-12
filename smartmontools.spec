@@ -1,11 +1,11 @@
 Summary:	S.M.A.R.T. control and monitoring of ATA/SCSI harddisks
-Summary(cs.UTF-8):   smartmontools - pro monitorování S.M.A.R.T. disků a zařízení
-Summary(de.UTF-8):   smartmontools - zur Überwachung von S.M.A.R.T.-Platten und-Geräten
-Summary(es.UTF-8):   smartmontools - para el seguimiento de discos y dispositivos S.M.A.R.T.
-Summary(fr.UTF-8):   smartmontools - pour le suivi des disques et instruments S.M.A.R.T.
-Summary(it.UTF-8):   smartmontools - per monitare dischi e dispositivi S.M.A.R.T.
-Summary(pl.UTF-8):   Monitorowanie i kontrola dysków za pomocą S.M.A.R.T
-Summary(pt.UTF-8):   smartmontools - para monitorar discos e dispositivos S.M.A.R.T.
+Summary(cs.UTF-8):	smartmontools - pro monitorování S.M.A.R.T. disků a zařízení
+Summary(de.UTF-8):	smartmontools - zur Überwachung von S.M.A.R.T.-Platten und-Geräten
+Summary(es.UTF-8):	smartmontools - para el seguimiento de discos y dispositivos S.M.A.R.T.
+Summary(fr.UTF-8):	smartmontools - pour le suivi des disques et instruments S.M.A.R.T.
+Summary(it.UTF-8):	smartmontools - per monitare dischi e dispositivi S.M.A.R.T.
+Summary(pl.UTF-8):	Monitorowanie i kontrola dysków za pomocą S.M.A.R.T
+Summary(pt.UTF-8):	smartmontools - para monitorar discos e dispositivos S.M.A.R.T.
 Name:		smartmontools
 Version:	5.37
 Release:	1
