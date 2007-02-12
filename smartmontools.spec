@@ -1,11 +1,11 @@
 Summary:	S.M.A.R.T. control and monitoring of ATA/SCSI harddisks
-Summary(cs):	smartmontools - pro monitorování S.M.A.R.T. diskù a zaøízení
-Summary(de):	smartmontools - zur Überwachung von S.M.A.R.T.-Platten und-Geräten
-Summary(es):	smartmontools - para el seguimiento de discos y dispositivos S.M.A.R.T.
-Summary(fr):	smartmontools - pour le suivi des disques et instruments S.M.A.R.T.
-Summary(it):	smartmontools - per monitare dischi e dispositivi S.M.A.R.T.
-Summary(pl):	Monitorowanie i kontrola dysków za pomoc± S.M.A.R.T
-Summary(pt):	smartmontools - para monitorar discos e dispositivos S.M.A.R.T.
+Summary(cs.UTF-8):   smartmontools - pro monitorovÃ¡nÃ­ S.M.A.R.T. diskÅ¯ a zaÅ™Ã­zenÃ­
+Summary(de.UTF-8):   smartmontools - zur Ãœberwachung von S.M.A.R.T.-Platten und-GerÃ¤ten
+Summary(es.UTF-8):   smartmontools - para el seguimiento de discos y dispositivos S.M.A.R.T.
+Summary(fr.UTF-8):   smartmontools - pour le suivi des disques et instruments S.M.A.R.T.
+Summary(it.UTF-8):   smartmontools - per monitare dischi e dispositivi S.M.A.R.T.
+Summary(pl.UTF-8):   Monitorowanie i kontrola dyskÃ³w za pomocÄ… S.M.A.R.T
+Summary(pt.UTF-8):   smartmontools - para monitorar discos e dispositivos S.M.A.R.T.
 Name:		smartmontools
 Version:	5.37
 Release:	1
@@ -40,36 +40,36 @@ support for ATA/ATAPI-5 disks. It's intended to incorporate as much
 "vendor specific" and "reserved" information as possible about disk
 drives.
 
-%description -l cs
-smartmontools øídí a monitorují zaøízení pro ukládání dat za pou¾ití
-technologie automatického monitorování, analızy a hlá¹ení
+%description -l cs.UTF-8
+smartmontools Å™Ã­dÃ­ a monitorujÃ­ zaÅ™Ã­zenÃ­ pro uklÃ¡dÃ¡nÃ­ dat za pouÅ¾itÃ­
+technologie automatickÃ©ho monitorovÃ¡nÃ­, analÃ½zy a hlÃ¡Å¡enÃ­
 (Self-Monitoring, Analysis and Reporting Technology System -
-S.M.A.R.T.) vestavìného do pevnıch diskù ATA a SCSI. Pou¾ívá se ke
-kontrole pou¾itelnosti pevného disku a pøedvídání havárií diskù.
-Nástroje jsou odvozeny od balíèku smartsuite a obsahují dva programy.
-První, smartctl, je nástroj pro provádìní jednoduchıch S.M.A.R.T. úloh
-na pøíkazové øádce. Druhı, smartd, je démon, kterı periodicky
-monitoruje stav a hlásí chyby do systémového protokolu. Balíèek je
-kompatibilní se specifikací ATA/ATAPI-5. Balíèek je navr¾en tak, aby
-pokryl co nejvíce polo¾ek s informacemi "závislé na vırobci" a
-"rezervováno".
+S.M.A.R.T.) vestavÄ›nÃ©ho do pevnÃ½ch diskÅ¯ ATA a SCSI. PouÅ¾Ã­vÃ¡ se ke
+kontrole pouÅ¾itelnosti pevnÃ©ho disku a pÅ™edvÃ­dÃ¡nÃ­ havÃ¡riÃ­ diskÅ¯.
+NÃ¡stroje jsou odvozeny od balÃ­Äku smartsuite a obsahujÃ­ dva programy.
+PrvnÃ­, smartctl, je nÃ¡stroj pro provÃ¡dÄ›nÃ­ jednoduchÃ½ch S.M.A.R.T. Ãºloh
+na pÅ™Ã­kazovÃ© Å™Ã¡dce. DruhÃ½, smartd, je dÃ©mon, kterÃ½ periodicky
+monitoruje stav a hlÃ¡sÃ­ chyby do systÃ©movÃ©ho protokolu. BalÃ­Äek je
+kompatibilnÃ­ se specifikacÃ­ ATA/ATAPI-5. BalÃ­Äek je navrÅ¾en tak, aby
+pokryl co nejvÃ­ce poloÅ¾ek s informacemi "zÃ¡vislÃ© na vÃ½robci" a
+"rezervovÃ¡no".
 
-%description -l de
-Die smartmontools steuern und überwachen Speichergeräte mittels des
+%description -l de.UTF-8
+Die smartmontools steuern und Ã¼berwachen SpeichergerÃ¤te mittels des
 S.M.A.R.T.-Systems (Self-Monitoring, Analysis and Reporting
-Technology, Technologie zur Selbst-Überwachung, Analyse und
+Technology, Technologie zur Selbst-Ãœberwachung, Analyse und
 Berichterstellung), das in ATA- und SCSI-Festplatten eingesetzt wird.
-Sie werden benutzt, um die Zuverlässigkeit der Festplatte zu prüfen
+Sie werden benutzt, um die ZuverlÃ¤ssigkeit der Festplatte zu prÃ¼fen
 und Plattenfehler vorherzusagen. Die Suite wurde vom smartsuite-Paket
-abgeleitet und enthält zwei Dienstprogramme. Das erste, smartctl, ist
-ein Kommandozeilentool, das einfache S.M.A.R.T. Aufgaben ausführt. Das
+abgeleitet und enthÃ¤lt zwei Dienstprogramme. Das erste, smartctl, ist
+ein Kommandozeilentool, das einfache S.M.A.R.T. Aufgaben ausfÃ¼hrt. Das
 zweite, smartd, ist ein Daemon, der periodisch den S.M.A.R.T.-Status
-überwacht und Fehler ins Syslog protokolliert. Das Paket ist zur
+Ã¼berwacht und Fehler ins Syslog protokolliert. Das Paket ist zur
 ATA/ATAPI-5 Spezifikation kompatibel. Das Paket versucht, so viele
-"herstellerspezifische" und "reservierte" Information über
-Plattenlaufwerke wie möglich bereitzustellen.
+"herstellerspezifische" und "reservierte" Information Ã¼ber
+Plattenlaufwerke wie mÃ¶glich bereitzustellen.
 
-%description -l es
+%description -l es.UTF-8
 smartmontools controla y hace el seguimiento de dispositivos de
 almacenamiento usando el Self-Monitoring, Analysis and Reporting
 Technology System (S.M.A.R.T.) incorporado en discos duros ATA y SCSI.
@@ -83,60 +83,60 @@ con el sistema ATA/ATAPI-5. Este conjunto de programas tiene el
 proposito de incorporar la mayor cantidad posible de informacion
 reservada y especifica de discos duros.
 
-%description -l fr
-smartmontools contrôle et fait le suivi de périphériques de stockage
-utilisant le système Self-Monitoring, Analysis and Reporting
-Technology (S.M.A.R.T) intégré dans les disques durs ATA et SCSI. Ce
-système est utilisé pour vérifier la fiabilité du disque dur et
-prédire les défaillances du lecteur. La suite logicielle dérive du
+%description -l fr.UTF-8
+smartmontools contrÃ´le et fait le suivi de pÃ©riphÃ©riques de stockage
+utilisant le systÃ¨me Self-Monitoring, Analysis and Reporting
+Technology (S.M.A.R.T) intÃ©grÃ© dans les disques durs ATA et SCSI. Ce
+systÃ¨me est utilisÃ© pour vÃ©rifier la fiabilitÃ© du disque dur et
+prÃ©dire les dÃ©faillances du lecteur. La suite logicielle dÃ©rive du
 paquet smartsuite et contient deux utilitaires. Le premier, smartctl,
-fonctionne en ligne de commande et permet de réaliser des tâches
-S.M.A.R.T. simples. Le second, smartd, est un démon qui fait
-périodiquement le suivi du statut smart et transmet les erreurs au
-syslog. Ce paquet est compatible avec la spécification ATA/ATAPI-5.
+fonctionne en ligne de commande et permet de rÃ©aliser des tÃ¢ches
+S.M.A.R.T. simples. Le second, smartd, est un dÃ©mon qui fait
+pÃ©riodiquement le suivi du statut smart et transmet les erreurs au
+syslog. Ce paquet est compatible avec la spÃ©cification ATA/ATAPI-5.
 Ce paquet tente d'incorporer le plus d'informations possible sur les
-disques durs qu'elles soient spécifiques au constructeur ("vendor
-specific") ou réservées ("reserved").
+disques durs qu'elles soient spÃ©cifiques au constructeur ("vendor
+specific") ou rÃ©servÃ©es ("reserved").
 
-%description -l it
+%description -l it.UTF-8
 smartmontools controlla e monitora dischi che usano il
 "Self-Monitoring, Analysis and Reporting Technology System"
-(S.M.A.R.T.), in hard drive ATA e SCSI. Esso è usato per controllare
-l'affidabilità dei drive e predire i guasti. La suite è derivata dal
-package smartsuite e contiene due utility. La prima, smartctl, è una
+(S.M.A.R.T.), in hard drive ATA e SCSI. Esso Ã¨ usato per controllare
+l'affidabilitÃ  dei drive e predire i guasti. La suite Ã¨ derivata dal
+package smartsuite e contiene due utility. La prima, smartctl, Ã¨ una
 utility a linea di comando progettata per eseguire semplici task
-S.M.A.R.T.. La seconda, smartd, è un daemon che periodicamente
-monitora lo stato di smart e riporta errori al syslog. Il package è
+S.M.A.R.T.. La seconda, smartd, Ã¨ un daemon che periodicamente
+monitora lo stato di smart e riporta errori al syslog. Il package Ã¨
 compatibile con le specifiche ATA/ATAPI-5. Il package vuole
 incorporare tutte le possibili informazioni riservate e "vendor
 specific" sui dischi.
 
-%description -l pl
-Pakiet smartmontools zawiera narzêdzia do sterowania i monitorowania
-systemami przechowywania danych za pomoc± S.M.A.R.T (Self-Monitoring,
-Analysis and Reporting Technology) - systemu wbudowanego w wiêkszo¶æ
-nowych dysków ATA oraz SCSI. Ma to na celu sprawdzanie wiarygodno¶ci
+%description -l pl.UTF-8
+Pakiet smartmontools zawiera narzÄ™dzia do sterowania i monitorowania
+systemami przechowywania danych za pomocÄ… S.M.A.R.T (Self-Monitoring,
+Analysis and Reporting Technology) - systemu wbudowanego w wiÄ™kszoÅ›Ä‡
+nowych dyskÃ³w ATA oraz SCSI. Ma to na celu sprawdzanie wiarygodnoÅ›ci
 twardego dysku i przewidywanie jego awarii. Pakiet pochodzi od
-oprogramowania smartsuite i zawiera dwa narzêdzia. Pierwsze, smartctl,
-to program dzia³aj±cy z linii poleceñ stworzony do wykonywania
-prostych zadañ S.M.A.R.T.. Drugie, smartd, to demon okresowo
-monitoruj±cy stan S.M.A.R.T. i raportuj±cy b³êdy poprzez sysloga.
+oprogramowania smartsuite i zawiera dwa narzÄ™dzia. Pierwsze, smartctl,
+to program dziaÅ‚ajÄ…cy z linii poleceÅ„ stworzony do wykonywania
+prostych zadaÅ„ S.M.A.R.T.. Drugie, smartd, to demon okresowo
+monitorujÄ…cy stan S.M.A.R.T. i raportujÄ…cy bÅ‚Ä™dy poprzez sysloga.
 Aktualnie pakiet wspiera dyski ATA/ATAPI-5. Pakiet ma na celu
-w³±czenie obs³ugi jak najwiêkszej ilo¶ci informacji specyficznych dla
+wÅ‚Ä…czenie obsÅ‚ugi jak najwiÄ™kszej iloÅ›ci informacji specyficznych dla
 producenta oraz "zarezerwowanych".
 
-%description -l pt
+%description -l pt.UTF-8
 smartmontools controla e monitora dispositivos de armazenamento
 utilizando o recurso Self-Monitoring, Analysis and Reporting
-Technology System (S.M.A.R.T.) integrado nos discos rígidos ATA e
-SCSI, cuja finalidade é verificar a confiabilidade do disco rígido e
-prever falhas da unidade. A suite é derivada do pacote smartsuite, e
-contém dois utilitários. O primeiro, smartctl, é um utilitário de
+Technology System (S.M.A.R.T.) integrado nos discos rÃ­gidos ATA e
+SCSI, cuja finalidade Ã© verificar a confiabilidade do disco rÃ­gido e
+prever falhas da unidade. A suite Ã© derivada do pacote smartsuite, e
+contÃ©m dois utilitÃ¡rios. O primeiro, smartctl, Ã© um utilitÃ¡rio de
 linha de comando projetado para executar tarefas simples de S.M.A.R.T.
-O segundo, smartd, é um daemon que monitora periodicamente estados do
-smart e reporta erros para o syslog. O pacote é compatível com a
-especificação ATA/ATAPI-5. O pacote pretende incorporar o maior número
-possível de informações "específicas do fabricante" e "reservadas"
+O segundo, smartd, Ã© um daemon que monitora periodicamente estados do
+smart e reporta erros para o syslog. O pacote Ã© compatÃ­vel com a
+especificaÃ§Ã£o ATA/ATAPI-5. O pacote pretende incorporar o maior nÃºmero
+possÃ­vel de informaÃ§Ãµes "especÃ­ficas do fabricante" e "reservadas"
 sobre unidades de disco.
 
 %prep
