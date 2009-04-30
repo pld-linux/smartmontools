@@ -18,7 +18,7 @@
 start() {
 	if [ ! -f /var/lock/subsys/smartd ]; then
 		msg_starting smartd
-		daemon smartd </dev/null
+		daemon /usr/sbin/smartd </dev/null
 		RETVAL=$?
 		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/smartd
 	else
