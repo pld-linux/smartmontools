@@ -93,8 +93,8 @@ paquet smartsuite et contient deux utilitaires. Le premier, smartctl,
 fonctionne en ligne de commande et permet de réaliser des tâches
 S.M.A.R.T. simples. Le second, smartd, est un démon qui fait
 périodiquement le suivi du statut smart et transmet les erreurs au
-syslog. Ce paquet est compatible avec la spécification ATA/ATAPI-5.
-Ce paquet tente d'incorporer le plus d'informations possible sur les
+syslog. Ce paquet est compatible avec la spécification ATA/ATAPI-5. Ce
+paquet tente d'incorporer le plus d'informations possible sur les
 disques durs qu'elles soient spécifiques au constructeur ("vendor
 specific") ou réservées ("reserved").
 
@@ -177,7 +177,8 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc CHANGELOG README TODO
-%attr(755,root,root) %{_sbindir}/*
+%attr(755,root,root) %{_sbindir}/smartctl
+%attr(755,root,root) %{_sbindir}/smartd
 %attr(754,root,root) /etc/rc.d/init.d/smartd
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/*.conf
 %{_mandir}/man5/*
