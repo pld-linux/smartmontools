@@ -1,0 +1,9 @@
+description "S.M.A.R.T. Daemon"
+
+# as soon as /usr is mounted
+start on local-filesystems
+stop on pld.shutdown-started
+
+respawn
+
+exec /usr/sbin/smartd -n
