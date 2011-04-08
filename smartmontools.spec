@@ -8,12 +8,13 @@ Summary(pl.UTF-8):	Monitorowanie i kontrola dysków za pomocą S.M.A.R.T
 Summary(pt.UTF-8):	smartmontools - para monitorar discos e dispositivos S.M.A.R.T.
 Name:		smartmontools
 Version:	5.40
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/smartmontools/%{name}-%{version}.tar.gz
 # Source0-md5:	0f0be0239914ad87830a4fff594bda5b
 Source1:	%{name}.init
+Source2:	smartd.upstart
 URL:		http://smartmontools.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -159,7 +160,9 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/smartd
+install -d $RPM_BUILD_ROOT/etc/{rc.d/init.d,init}
+install -p %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/smartd
+cp -p %{SOURCE2} $RPM_BUILD_ROOT/etc/init/smartd.conf
 
 sed -e 's#^/dev/#\#/dev/#g' smartd.conf > $RPM_BUILD_ROOT%{_sysconfdir}/smartd.conf
 
@@ -183,6 +186,7 @@ fi
 %attr(755,root,root) %{_sbindir}/smartd
 %attr(755,root,root) %{_sbindir}/update-smart-drivedb
 %attr(754,root,root) /etc/rc.d/init.d/smartd
+%config(noreplace) %verify(not md5 mtime size) /etc/init/smartd.conf
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/*.conf
 %{_mandir}/man5/*
 %{_mandir}/man8/*
