@@ -7,12 +7,12 @@ Summary(it.UTF-8):	smartmontools - per monitare dischi e dispositivi S.M.A.R.T.
 Summary(pl.UTF-8):	Monitorowanie i kontrola dysków za pomocą S.M.A.R.T
 Summary(pt.UTF-8):	smartmontools - para monitorar discos e dispositivos S.M.A.R.T.
 Name:		smartmontools
-Version:	5.40
-Release:	3
-License:	GPL
+Version:	5.41
+Release:	1
+License:	GPL v2+
 Group:		Applications/System
-Source0:	http://dl.sourceforge.net/smartmontools/%{name}-%{version}.tar.gz
-# Source0-md5:	0f0be0239914ad87830a4fff594bda5b
+Source0:	http://downloads.sourceforge.net/smartmontools/%{name}-%{version}.tar.gz
+# Source0-md5:	4577886bea79d4ff12bd9a7d323ce692
 Source1:	%{name}.init
 Source2:	smartd.upstart
 URL:		http://smartmontools.sourceforge.net/
@@ -181,12 +181,14 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc CHANGELOG README TODO
+%doc AUTHORS CHANGELOG NEWS README TODO WARNINGS
 %attr(755,root,root) %{_sbindir}/smartctl
 %attr(755,root,root) %{_sbindir}/smartd
 %attr(755,root,root) %{_sbindir}/update-smart-drivedb
 %attr(754,root,root) /etc/rc.d/init.d/smartd
 %config(noreplace) %verify(not md5 mtime size) /etc/init/smartd.conf
-%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/*.conf
-%{_mandir}/man5/*
-%{_mandir}/man8/*
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/smartd.conf
+%{_datadir}/smartmontools
+%{_mandir}/man5/smartd.conf.5*
+%{_mandir}/man8/smartctl.8*
+%{_mandir}/man8/smartd.8*
