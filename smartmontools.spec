@@ -8,13 +8,14 @@ Summary(pl.UTF-8):	Monitorowanie i kontrola dysków za pomocą S.M.A.R.T
 Summary(pt.UTF-8):	smartmontools - para monitorar discos e dispositivos S.M.A.R.T.
 Name:		smartmontools
 Version:	5.42
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		Applications/System
 Source0:	http://downloads.sourceforge.net/smartmontools/%{name}-%{version}.tar.gz
 # Source0-md5:	4460bf9a79a1252ff5c00ba52cf76b2a
 Source1:	%{name}.init
 Source2:	smartd.upstart
+Source3:	smartd.service
 URL:		http://smartmontools.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -141,6 +142,14 @@ especificação ATA/ATAPI-5. O pacote pretende incorporar o maior número
 possível de informações "específicas do fabricante" e "reservadas"
 sobre unidades de disco.
 
+%package systemd
+Summary:	systemd units for smartd
+Group:		Base
+Requires:	%{name} = %{version}-%{release}
+
+%description systemd
+systemd units for smartd.
+
 %prep
 %setup -q
 
@@ -160,9 +169,10 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT/etc/{rc.d/init.d,init}
+install -d $RPM_BUILD_ROOT{/etc/{rc.d/init.d,init},/lib/systemd/system}
 install -p %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/smartd
 cp -p %{SOURCE2} $RPM_BUILD_ROOT/etc/init/smartd.conf
+cp -p %{SOURCE3} $RPM_BUILD_ROOT/lib/systemd/system
 
 sed -e 's#^/dev/#\#/dev/#g' smartd.conf > $RPM_BUILD_ROOT%{_sysconfdir}/smartd.conf
 
@@ -192,3 +202,7 @@ fi
 %{_mandir}/man5/smartd.conf.5*
 %{_mandir}/man8/smartctl.8*
 %{_mandir}/man8/smartd.8*
+
+%files systemd
+%defattr(644,root,root,755)
+/lib/systemd/system/smartd.service
