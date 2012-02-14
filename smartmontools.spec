@@ -8,7 +8,7 @@ Summary(pl.UTF-8):	Monitorowanie i kontrola dysków za pomocą S.M.A.R.T
 Summary(pt.UTF-8):	smartmontools - para monitorar discos e dispositivos S.M.A.R.T.
 Name:		smartmontools
 Version:	5.42
-Release:	2
+Release:	3
 License:	GPL v2+
 Group:		Applications/System
 Source0:	http://downloads.sourceforge.net/smartmontools/%{name}-%{version}.tar.gz
@@ -21,10 +21,12 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libcap-ng-devel
 BuildRequires:	libstdc++-devel
-BuildRequires:	rpmbuild(macros) >= 1.268
+BuildRequires:	rpmbuild(macros) >= 1.626
 Requires(post,preun):	/sbin/chkconfig
 Requires:	rc-scripts >= 0.4.3.0
+Requires:	systemd-units >= 37-0.10
 Obsoletes:	smartctl
+Obsoletes:	smartmontools-systemd
 Obsoletes:	smartsuite
 Obsoletes:	ucsc-smartsuite
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -142,14 +144,6 @@ especificação ATA/ATAPI-5. O pacote pretende incorporar o maior número
 possível de informações "específicas do fabricante" e "reservadas"
 sobre unidades de disco.
 
-%package systemd
-Summary:	systemd units for smartd
-Group:		Base
-Requires:	%{name} = %{version}-%{release}
-
-%description systemd
-systemd units for smartd.
-
 %prep
 %setup -q
 
@@ -182,12 +176,20 @@ rm -rf $RPM_BUILD_ROOT
 %post
 /sbin/chkconfig --add smartd
 %service smartd restart
+%systemd_post smartd.service
 
 %preun
 if [ "$1" = "0" ]; then
 	%service smartd stop
 	/sbin/chkconfig --del smartd
 fi
+%systemd_preun smartd.service
+
+%postun
+%systemd_reload
+
+%triggerpostun -- %{name} < 5.42-3
+%systemd_trigger crond.service
 
 %files
 %defattr(644,root,root,755)
@@ -198,11 +200,8 @@ fi
 %attr(754,root,root) /etc/rc.d/init.d/smartd
 %config(noreplace) %verify(not md5 mtime size) /etc/init/smartd.conf
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/smartd.conf
+/lib/systemd/system/smartd.service
 %{_datadir}/smartmontools
 %{_mandir}/man5/smartd.conf.5*
 %{_mandir}/man8/smartctl.8*
 %{_mandir}/man8/smartd.8*
-
-%files systemd
-%defattr(644,root,root,755)
-/lib/systemd/system/smartd.service
