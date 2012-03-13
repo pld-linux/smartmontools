@@ -1,3 +1,20 @@
+#
+# Conditional build:
+%if "%{pld_release}" == "ac"
+%bcond_with		capng		# build with libpcap-ng
+%bcond_with		systemd		# with systemd units
+%else
+%bcond_without	capng		# build without libpcap-ng
+%bcond_without	systemd		# without systemd units
+%endif
+
+%if %{without systemd}
+%define	systemd_post() %{nil}
+%define	systemd_preun() %{nil}
+%define	systemd_reload() %{nil}
+%define	systemd_trigger() %{nil}
+%endif
+
 Summary:	S.M.A.R.T. control and monitoring of ATA/SCSI harddisks
 Summary(cs.UTF-8):	smartmontools - pro monitorování S.M.A.R.T. disků a zařízení
 Summary(de.UTF-8):	smartmontools - zur Überwachung von S.M.A.R.T.-Platten und-Geräten
@@ -8,7 +25,7 @@ Summary(pl.UTF-8):	Monitorowanie i kontrola dysków za pomocą S.M.A.R.T
 Summary(pt.UTF-8):	smartmontools - para monitorar discos e dispositivos S.M.A.R.T.
 Name:		smartmontools
 Version:	5.42
-Release:	5
+Release:	6
 License:	GPL v2+
 Group:		Applications/System
 Source0:	http://downloads.sourceforge.net/smartmontools/%{name}-%{version}.tar.gz
@@ -19,12 +36,13 @@ Source3:	smartd.service
 URL:		http://smartmontools.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	libcap-ng-devel
+%{?with_capng:BuildRequires:	libcap-ng-devel}
 BuildRequires:	libstdc++-devel
+BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	rpmbuild(macros) >= 1.626
 Requires(post,preun):	/sbin/chkconfig
 Requires:	rc-scripts >= 0.4.3.0
-Requires:	systemd-units >= 37-0.10
+%{?with_systemd:Requires:	systemd-units >= 37-0.10}
 Obsoletes:	smartctl
 Obsoletes:	smartmontools-systemd
 Obsoletes:	smartsuite
@@ -153,14 +171,15 @@ sobre unidades de disco.
 %{__autoheader}
 %{__automake}
 %configure \
-	--with-libcap-ng=yes
+	%{?with_capng:--with-libcap-ng=yes}
 
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 %{__make} install \
+	docs_DATA= \
+	examplesdir=%{_examplesdir}/%{name}-%{version} \
 	DESTDIR=$RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT{/etc/{rc.d/init.d,init},/lib/systemd/system}
@@ -168,7 +187,7 @@ install -p %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/smartd
 cp -p %{SOURCE2} $RPM_BUILD_ROOT/etc/init/smartd.conf
 cp -p %{SOURCE3} $RPM_BUILD_ROOT/lib/systemd/system
 
-sed -e 's#^/dev/#\#/dev/#g' smartd.conf > $RPM_BUILD_ROOT%{_sysconfdir}/smartd.conf
+sed -e 's,^/dev/,#&,' smartd.conf > $RPM_BUILD_ROOT%{_sysconfdir}/smartd.conf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -194,14 +213,15 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS CHANGELOG NEWS README TODO WARNINGS
-%attr(755,root,root) %{_sbindir}/smartctl
-%attr(755,root,root) %{_sbindir}/smartd
-%attr(755,root,root) %{_sbindir}/update-smart-drivedb
 %attr(754,root,root) /etc/rc.d/init.d/smartd
 %config(noreplace) %verify(not md5 mtime size) /etc/init/smartd.conf
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/smartd.conf
+%attr(755,root,root) %{_sbindir}/smartctl
+%attr(755,root,root) %{_sbindir}/smartd
+%attr(755,root,root) %{_sbindir}/update-smart-drivedb
 /lib/systemd/system/smartd.service
 %{_datadir}/smartmontools
+%{_examplesdir}/%{name}-%{version}
 %{_mandir}/man5/smartd.conf.5*
 %{_mandir}/man8/smartctl.8*
 %{_mandir}/man8/smartd.8*
