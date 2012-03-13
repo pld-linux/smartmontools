@@ -2,17 +2,8 @@
 # Conditional build:
 %if "%{pld_release}" == "ac"
 %bcond_with		capng		# build with libpcap-ng
-%bcond_with		systemd		# with systemd units
 %else
 %bcond_without	capng		# build without libpcap-ng
-%bcond_without	systemd		# without systemd units
-%endif
-
-%if %{without systemd}
-%define	systemd_post() %{nil}
-%define	systemd_preun() %{nil}
-%define	systemd_reload() %{nil}
-%define	systemd_trigger() %{nil}
 %endif
 
 Summary:	S.M.A.R.T. control and monitoring of ATA/SCSI harddisks
@@ -25,7 +16,7 @@ Summary(pl.UTF-8):	Monitorowanie i kontrola dysków za pomocą S.M.A.R.T
 Summary(pt.UTF-8):	smartmontools - para monitorar discos e dispositivos S.M.A.R.T.
 Name:		smartmontools
 Version:	5.42
-Release:	6
+Release:	7
 License:	GPL v2+
 Group:		Applications/System
 Source0:	http://downloads.sourceforge.net/smartmontools/%{name}-%{version}.tar.gz
@@ -39,10 +30,12 @@ BuildRequires:	automake
 %{?with_capng:BuildRequires:	libcap-ng-devel}
 BuildRequires:	libstdc++-devel
 BuildRequires:	rpm >= 4.4.9-56
-BuildRequires:	rpmbuild(macros) >= 1.626
+BuildRequires:	rpmbuild(macros) >= 1.647
 Requires(post,preun):	/sbin/chkconfig
 Requires:	rc-scripts >= 0.4.3.0
-%{?with_systemd:Requires:	systemd-units >= 37-0.10}
+%if %{pld_release} != "ac"
+Requires:	systemd-units >= 37-0.10
+%endif
 Obsoletes:	smartctl
 Obsoletes:	smartmontools-systemd
 Obsoletes:	smartsuite
