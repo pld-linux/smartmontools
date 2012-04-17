@@ -16,7 +16,7 @@ Summary(pl.UTF-8):	Monitorowanie i kontrola dysków za pomocą S.M.A.R.T
 Summary(pt.UTF-8):	smartmontools - para monitorar discos e dispositivos S.M.A.R.T.
 Name:		smartmontools
 Version:	5.42
-Release:	7
+Release:	8
 License:	GPL v2+
 Group:		Applications/System
 Source0:	http://downloads.sourceforge.net/smartmontools/%{name}-%{version}.tar.gz
@@ -34,7 +34,8 @@ BuildRequires:	rpmbuild(macros) >= 1.647
 Requires(post,preun):	/sbin/chkconfig
 Requires:	rc-scripts >= 0.4.3.0
 %if %{pld_release} != "ac"
-Requires:	systemd-units >= 37-0.10
+Requires(post,preun,postun):	systemd-units >= 38
+Requires:	systemd-units >= 38
 %endif
 Obsoletes:	smartctl
 Obsoletes:	smartmontools-systemd
