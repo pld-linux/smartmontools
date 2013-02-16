@@ -33,7 +33,7 @@ BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	rpmbuild(macros) >= 1.647
 Requires(post,preun):	/sbin/chkconfig
 Requires:	rc-scripts >= 0.4.3.0
-%if %{pld_release} != "ac"
+%if "%{pld_release}" != "ac"
 Requires(post,preun,postun):	systemd-units >= 38
 Requires:	systemd-units >= 38
 %endif
