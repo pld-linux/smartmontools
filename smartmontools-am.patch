@@ -1,0 +1,11 @@
+--- smartmontools-6.1/configure.ac.orig	2013-03-16 15:36:18.000000000 +0100
++++ smartmontools-6.1/configure.ac	2013-05-12 15:00:36.048712650 +0200
+@@ -18,7 +18,7 @@
+ AC_DEFINE_UNQUOTED(CONFIG_H_CVSID,               "$smartmontools_cvs_tag",        [smartmontools CVS Tag])
+ AC_DEFINE_UNQUOTED(PACKAGE_HOMEPAGE,             "http://smartmontools.sourceforge.net/", [smartmontools Home Page])
+ 
+-AM_CONFIG_HEADER(config.h)
++AC_CONFIG_HEADERS(config.h)
+ 
+ AM_INIT_AUTOMAKE([foreign])
+ 
