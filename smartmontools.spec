@@ -16,15 +16,14 @@ Summary(it.UTF-8):	smartmontools - per monitare dischi e dispositivi S.M.A.R.T.
 Summary(pl.UTF-8):	Monitorowanie i kontrola dysków za pomocą S.M.A.R.T
 Summary(pt.UTF-8):	smartmontools - para monitorar discos e dispositivos S.M.A.R.T.
 Name:		smartmontools
-Version:	6.2
+Version:	6.3
 Release:	1
 License:	GPL v2+
 Group:		Applications/System
 Source0:	http://downloads.sourceforge.net/smartmontools/%{name}-%{version}.tar.gz
-# Source0-md5:	d44f84081a12cef79cd17f78044351fc
+# Source0-md5:	2ea0c62206e110192a97b59291b17f54
 Source1:	%{name}.init
 Source2:	smartd.upstart
-Patch0:		%{name}-am.patch
 URL:		http://smartmontools.sourceforge.net/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
@@ -162,7 +161,6 @@ sobre unidades de disco.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 %{__aclocal}
@@ -182,7 +180,7 @@ rm -rf $RPM_BUILD_ROOT
 	examplesdir=%{_examplesdir}/%{name}-%{version} \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT{/etc/{rc.d/init.d,init},/lib/systemd/system}
+install -d $RPM_BUILD_ROOT{/etc/{rc.d/init.d,init},%{systemdunitdir}}
 install -p %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/smartd
 cp -p %{SOURCE2} $RPM_BUILD_ROOT/etc/init/smartd.conf
 
@@ -219,9 +217,10 @@ fi
 %attr(755,root,root) %{_sbindir}/smartctl
 %attr(755,root,root) %{_sbindir}/smartd
 %attr(755,root,root) %{_sbindir}/update-smart-drivedb
-/lib/systemd/system/smartd.service
+%{systemdunitdir}/smartd.service
 %{_datadir}/smartmontools
 %{_examplesdir}/%{name}-%{version}
 %{_mandir}/man5/smartd.conf.5*
 %{_mandir}/man8/smartctl.8*
 %{_mandir}/man8/smartd.8*
+%{_mandir}/man8/update-smart-drivedb.8*
