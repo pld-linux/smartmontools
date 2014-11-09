@@ -1,6 +1,6 @@
-#!/bin/bash -e
+#!/bin/sh -e
 
-tmp=$(tempfile)
+tmp=$(mktemp) || exit 1
 cat >$tmp
 
 run-parts --report --lsbsysinit --arg=$tmp --arg="$1" \
