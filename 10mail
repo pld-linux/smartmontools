@@ -1,0 +1,13 @@
+#!/bin/sh -e
+
+# Send mail if /bin/mail exists
+if ! [ -x /bin/mail ]; then
+	echo "Your system does not have /bin/mail.  Install the mailx or mailutils package" 
+	exit 1
+fi
+
+input=$1
+shift
+
+/bin/mail "$@" < $input
+

@@ -17,13 +17,17 @@ Summary(pl.UTF-8):	Monitorowanie i kontrola dysków za pomocą S.M.A.R.T
 Summary(pt.UTF-8):	smartmontools - para monitorar discos e dispositivos S.M.A.R.T.
 Name:		smartmontools
 Version:	6.3
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		Applications/System
 Source0:	http://downloads.sourceforge.net/smartmontools/%{name}-%{version}.tar.gz
 # Source0-md5:	2ea0c62206e110192a97b59291b17f54
 Source1:	%{name}.init
 Source2:	smartd.upstart
+Source3:	10mail
+Source4:	10powersave-notify
+Source5:	smartd-runner
+Patch0:		53_use-smartd-runner-by-default.diff
 URL:		http://smartmontools.sourceforge.net/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
@@ -161,6 +165,7 @@ sobre unidades de disco.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %{__aclocal}
@@ -169,7 +174,17 @@ sobre unidades de disco.
 %{__automake}
 %configure \
 	%{?with_capng:--with-libcap-ng} \
-	%{?with_selinux:--with-selinux}
+	%{?with_selinux:--with-selinux} \
+	--enable-drivedb \
+	--enable-savestates \
+	--enable-attributelog \
+	--with-savestates=/var/lib/smartmontools/smartd. \
+	--with-attributelog=/var/lib/smartmontools/attrlog. \
+	--with-drivedbdir=/var/lib/smartmontools/drivedb \
+	--with-systemdsystemunitdir=%{systemdunitdir} \
+	--with-smartdscriptdir=/usr/share/smartmontools \
+	--with-smartdplugindir=/etc/smartmontools/smartd_warning.d \
+	--with-systemdenvfile=/etc/sysconfig/smartmontools
 
 %{__make}
 
@@ -180,9 +195,12 @@ rm -rf $RPM_BUILD_ROOT
 	examplesdir=%{_examplesdir}/%{name}-%{version} \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT{/etc/{rc.d/init.d,init},%{systemdunitdir}}
+install -d $RPM_BUILD_ROOT{/etc/{rc.d/init.d,init,smartmontools/{run,smartd_warning}.d,sysconfig},%{systemdunitdir},%{_datadir}/%{name}}
 install -p %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/smartd
 cp -p %{SOURCE2} $RPM_BUILD_ROOT/etc/init/smartd.conf
+cp -p %{SOURCE3} $RPM_BUILD_ROOT/etc/smartmontools/run.d/10mail
+cp -p %{SOURCE4} $RPM_BUILD_ROOT/etc/smartmontools/run.d/10powersave-notify
+cp -p %{SOURCE5} $RPM_BUILD_ROOT%{_datadir}/%{name}/smartd-runner
 
 sed -e 's,^/dev/,#&,' smartd.conf > $RPM_BUILD_ROOT%{_sysconfdir}/smartd.conf
 
@@ -213,12 +231,21 @@ fi
 %attr(754,root,root) /etc/rc.d/init.d/smartd
 %config(noreplace) %verify(not md5 mtime size) /etc/init/smartd.conf
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/smartd.conf
-%attr(755,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/smartd_warning.sh
+%dir %{_sysconfdir}/%{name}
+%dir %{_sysconfdir}/%{name}/run.d
+%attr(755,root,root) %{_sysconfdir}/%{name}/run.d/10mail
+%attr(755,root,root) %{_sysconfdir}/%{name}/run.d/10powersave-notify
 %attr(755,root,root) %{_sbindir}/smartctl
 %attr(755,root,root) %{_sbindir}/smartd
 %attr(755,root,root) %{_sbindir}/update-smart-drivedb
 %{systemdunitdir}/smartd.service
-%{_datadir}/smartmontools
+%dir %{_datadir}/smartmontools
+%attr(755,root,root) %{_datadir}/%{name}/smartd-runner
+%attr(755,root,root) %{_datadir}/%{name}/smartd_warning.sh
+%dir %{_var}/lib/%{name}
+%dir %{_var}/lib/%{name}/drivedb
+# updated by update-smart-drivedb
+%verify(not md5 mtime size) %{_var}/lib/%{name}/drivedb/drivedb.h
 %{_examplesdir}/%{name}-%{version}
 %{_mandir}/man5/smartd.conf.5*
 %{_mandir}/man8/smartctl.8*
