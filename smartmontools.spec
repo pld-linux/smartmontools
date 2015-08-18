@@ -17,13 +17,12 @@ Summary(pl.UTF-8):	Monitorowanie i kontrola dysków za pomocą S.M.A.R.T
 Summary(pt.UTF-8):	smartmontools - para monitorar discos e dispositivos S.M.A.R.T.
 Name:		smartmontools
 Version:	6.4
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		Applications/System
 Source0:	http://downloads.sourceforge.net/smartmontools/%{name}-%{version}.tar.gz
 # Source0-md5:	56812c8312fd123ed40ef65afde1049e
 Source1:	%{name}.init
-Source2:	smartd.upstart
 Source3:	10mail
 Source4:	10powersave-notify
 Source5:	smartd-runner
@@ -195,9 +194,8 @@ rm -rf $RPM_BUILD_ROOT
 	examplesdir=%{_examplesdir}/%{name}-%{version} \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT{/etc/{rc.d/init.d,init,smartmontools/{run,smartd_warning}.d,sysconfig},%{systemdunitdir},%{_datadir}/%{name}}
+install -d $RPM_BUILD_ROOT{/etc/{rc.d/init.d,smartmontools/{run,smartd_warning}.d,sysconfig},%{systemdunitdir},%{_datadir}/%{name}}
 install -p %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/smartd
-cp -p %{SOURCE2} $RPM_BUILD_ROOT/etc/init/smartd.conf
 cp -p %{SOURCE3} $RPM_BUILD_ROOT/etc/smartmontools/run.d/10mail
 cp -p %{SOURCE4} $RPM_BUILD_ROOT/etc/smartmontools/run.d/10powersave-notify
 cp -p %{SOURCE5} $RPM_BUILD_ROOT%{_datadir}/%{name}/smartd-runner
@@ -229,7 +227,6 @@ fi
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README TODO
 %attr(754,root,root) /etc/rc.d/init.d/smartd
-%config(noreplace) %verify(not md5 mtime size) /etc/init/smartd.conf
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/smartd.conf
 %dir %{_sysconfdir}/%{name}
 %dir %{_sysconfdir}/%{name}/run.d

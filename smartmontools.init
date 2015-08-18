@@ -11,8 +11,6 @@
 # Source function library
 . /etc/rc.d/init.d/functions
 
-upstart_controlled
-
 # Get service config - may override defaults
 [ -f /etc/sysconfig/smartd ] && . /etc/sysconfig/smartd
 
