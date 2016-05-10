@@ -16,20 +16,20 @@ Summary(it.UTF-8):	smartmontools - per monitare dischi e dispositivi S.M.A.R.T.
 Summary(pl.UTF-8):	Monitorowanie i kontrola dysków za pomocą S.M.A.R.T
 Summary(pt.UTF-8):	smartmontools - para monitorar discos e dispositivos S.M.A.R.T.
 Name:		smartmontools
-Version:	6.4
-Release:	3
+Version:	6.5
+Release:	1
 License:	GPL v2+
 Group:		Applications/System
 Source0:	http://downloads.sourceforge.net/smartmontools/%{name}-%{version}.tar.gz
-# Source0-md5:	56812c8312fd123ed40ef65afde1049e
+# Source0-md5:	093aeec3f8f39fa9a37593c4012d3156
 Source1:	%{name}.init
 Source3:	10mail
 Source4:	10powersave-notify
 Source5:	smartd-runner
 Patch0:		53_use-smartd-runner-by-default.diff
 URL:		http://smartmontools.sourceforge.net/
-BuildRequires:	autoconf >= 2.50
-BuildRequires:	automake
+BuildRequires:	autoconf >= 2.60
+BuildRequires:	automake >= 1:1.10
 %{?with_capng:BuildRequires:	libcap-ng-devel}
 %{?with_selinux:BuildRequires:	libselinux-devel}
 BuildRequires:	libstdc++-devel
@@ -174,9 +174,6 @@ sobre unidades de disco.
 %configure \
 	%{?with_capng:--with-libcap-ng} \
 	%{?with_selinux:--with-selinux} \
-	--enable-drivedb \
-	--enable-savestates \
-	--enable-attributelog \
 	--with-savestates=/var/lib/smartmontools/smartd. \
 	--with-attributelog=/var/lib/smartmontools/attrlog. \
 	--with-drivedbdir=/var/lib/smartmontools/drivedb \
