@@ -44,9 +44,9 @@ Requires(post,preun,postun):	systemd-units >= 38
 Requires:	systemd-units >= 38
 %endif
 Obsoletes:	smartctl
-Obsoletes:	smartmontools-systemd
-Obsoletes:	smartsuite
-Obsoletes:	ucsc-smartsuite
+Obsoletes:	smartmontools-systemd < 5.42-3
+Obsoletes:	smartsuite < 2.2
+Obsoletes:	ucsc-smartsuite < 2.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
