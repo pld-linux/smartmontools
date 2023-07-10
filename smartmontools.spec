@@ -6,6 +6,7 @@
 %bcond_without	capng		# build without libpcap-ng
 %endif
 %bcond_without	selinux		# SELinux support
+%bcond_without	systemd
 
 Summary:	S.M.A.R.T. control and monitoring of ATA/SCSI harddisks
 Summary(cs.UTF-8):	smartmontools - pro monitorování S.M.A.R.T. disků a zařízení
@@ -36,7 +37,7 @@ BuildRequires:	libstdc++-devel >= 6:4.8.1
 BuildRequires:	pkgconfig
 BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	rpmbuild(macros) >= 1.647
-BuildRequires:	systemd-devel
+%{?with_systemd:BuildRequires:	systemd-devel}
 Requires(post,preun):	/sbin/chkconfig
 Requires:	rc-scripts >= 0.4.3.0
 %if "%{pld_release}" != "ac"
@@ -177,10 +178,14 @@ sobre unidades de disco.
 	--with-savestates=/var/lib/smartmontools/smartd. \
 	--with-attributelog=/var/lib/smartmontools/attrlog. \
 	--with-drivedbdir=/var/lib/smartmontools/drivedb \
-	--with-systemdsystemunitdir=%{systemdunitdir} \
 	--with-smartdscriptdir=/usr/share/smartmontools \
 	--with-smartdplugindir=/etc/smartmontools/smartd_warning.d \
+%if %{with systemd}
+	--with-systemdsystemunitdir=%{systemdunitdir} \
 	--with-systemdenvfile=/etc/sysconfig/smartmontools
+%else
+	--without-libsystemd
+%endif
 
 %{__make}
 
@@ -232,7 +237,9 @@ fi
 %attr(755,root,root) %{_sbindir}/smartctl
 %attr(755,root,root) %{_sbindir}/smartd
 %attr(755,root,root) %{_sbindir}/update-smart-drivedb
+%if %{with systemd}
 %{systemdunitdir}/smartd.service
+%endif
 %dir %{_datadir}/smartmontools
 %attr(755,root,root) %{_datadir}/%{name}/smartd-runner
 %attr(755,root,root) %{_datadir}/%{name}/smartd_warning.sh
