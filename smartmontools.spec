@@ -28,7 +28,7 @@ Source3:	10mail
 Source4:	10powersave-notify
 Source5:	smartd-runner
 Patch0:		53_use-smartd-runner-by-default.diff
-URL:		http://smartmontools.sourceforge.net/
+URL:		https://www.smartmontools.org
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake >= 1:1.10
 %{?with_capng:BuildRequires:	libcap-ng-devel}
