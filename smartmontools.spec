@@ -17,12 +17,12 @@ Summary(it.UTF-8):	smartmontools - per monitare dischi e dispositivi S.M.A.R.T.
 Summary(pl.UTF-8):	Monitorowanie i kontrola dysków za pomocą S.M.A.R.T
 Summary(pt.UTF-8):	smartmontools - para monitorar discos e dispositivos S.M.A.R.T.
 Name:		smartmontools
-Version:	7.3
+Version:	7.4
 Release:	1
 License:	GPL v2+
 Group:		Applications/System
 Source0:	https://downloads.sourceforge.net/smartmontools/%{name}-%{version}.tar.gz
-# Source0-md5:	7a71d388124e3cd43abf6586a43cb1ff
+# Source0-md5:	178d31a6ff5256c093227ab45a3f52aa
 Source1:	%{name}.init
 Source3:	10mail
 Source4:	10powersave-notify
